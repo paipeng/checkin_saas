@@ -1,6 +1,6 @@
 package com.paipeng.saas.checkin.controller;
 
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.User;
 import com.paipeng.saas.checkin.tenant.service.UserService;
 import com.sun.istack.NotNull;
 import org.apache.logging.log4j.LogManager;

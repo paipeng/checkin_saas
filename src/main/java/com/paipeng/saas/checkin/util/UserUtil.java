@@ -1,6 +1,6 @@
 package com.paipeng.saas.checkin.util;
 
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.User;
 
 public class UserUtil {
 

@@ -1,6 +1,6 @@
 package com.paipeng.saas.checkin.tenant.config;
 
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.User;
 import com.paipeng.saas.checkin.tenant.repository.UserRepository;
 import com.paipeng.saas.checkin.tenant.service.UserService;
 import org.hibernate.MultiTenancyStrategy;

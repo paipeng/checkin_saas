@@ -1,8 +1,8 @@
 package com.paipeng.saas.checkin.security;
 
-import com.paipeng.saas.checkin.tenant.model.CustomUserDetails;
-import com.paipeng.saas.checkin.tenant.model.Role;
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.CustomUserDetails;
+import com.paipeng.saas.checkin.tenant.entity.Role;
+import com.paipeng.saas.checkin.tenant.entity.User;
 import com.paipeng.saas.checkin.tenant.repository.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;

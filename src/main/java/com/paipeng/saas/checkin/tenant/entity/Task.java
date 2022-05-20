@@ -1,4 +1,4 @@
-package com.paipeng.saas.checkin.tenant.model;
+package com.paipeng.saas.checkin.tenant.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.LazyCollection;
@@ -8,7 +8,6 @@ import org.hibernate.annotations.LazyToOneOption;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Set;
 

@@ -2,7 +2,7 @@ package com.paipeng.saas.checkin.tenant.service;
 
 import com.paipeng.saas.checkin.config.ApplicationConfig;
 import com.paipeng.saas.checkin.security.AppAuthenticationToken;
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.User;
 import com.paipeng.saas.checkin.tenant.repository.UserRepository;
 import com.paipeng.saas.checkin.util.CommonUtil;
 import org.slf4j.Logger;

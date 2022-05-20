@@ -1,14 +1,11 @@
 package com.paipeng.saas.checkin.util;
 
-import com.paipeng.saas.checkin.tenant.model.Role;
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.Role;
+import com.paipeng.saas.checkin.tenant.entity.User;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CommonUtilTest {
     private static final String JWT_SECRET = "5161127a80ff47a1855176c345a1de39833b486ea3dd40629081ab0370a1632c87496492fb634c60a458182c69a7f0d0";

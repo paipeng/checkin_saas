@@ -3,21 +3,15 @@ package com.paipeng.saas.checkin.tenant.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -53,6 +47,21 @@ public class User implements Serializable {
 
     @Column(name = "token", length = 512)
     String token;
+
+
+    /**
+     * 用户所在公司
+     */
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false)
+    @LazyToOne(value = LazyToOneOption.FALSE)
+    private Company company;
+
+    @JsonBackReference("user-records")
+    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "user")
+    @LazyCollection(value = LazyCollectionOption.EXTRA)
+    private Set<Record> records;
+
 
     // Getters and setters
 

@@ -17,7 +17,7 @@ public class Company extends BaseEntity {
     private String name;
 
 
-    @Column(name = "expire", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "expire", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
     private Timestamp expire;
 
     @JsonBackReference("company-users")

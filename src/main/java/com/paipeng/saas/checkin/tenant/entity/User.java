@@ -16,14 +16,8 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "user")
-public class User implements Serializable {
-
+public class User extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
 
     @Column(name = "username")
     @NotNull(message = "*Please provide your username")
@@ -48,7 +42,6 @@ public class User implements Serializable {
     @Column(name = "token", length = 512)
     String token;
 
-
     /**
      * 用户所在公司
      */
@@ -64,15 +57,6 @@ public class User implements Serializable {
 
 
     // Getters and setters
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getUsername() {
         return username;
     }

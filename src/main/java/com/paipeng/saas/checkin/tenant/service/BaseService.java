@@ -1,7 +1,7 @@
 package com.paipeng.saas.checkin.tenant.service;
 
 import com.paipeng.saas.checkin.security.AppAuthenticationToken;
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public abstract class BaseService {

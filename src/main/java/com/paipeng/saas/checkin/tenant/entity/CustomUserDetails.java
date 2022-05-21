@@ -1,4 +1,4 @@
-package com.paipeng.saas.checkin.tenant.model;
+package com.paipeng.saas.checkin.tenant.entity;
 
 import java.util.Collection;
 

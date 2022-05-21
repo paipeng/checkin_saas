@@ -2,7 +2,7 @@ package com.paipeng.saas.checkin.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paipeng.saas.checkin.config.ApplicationConfig;
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.User;
 import com.paipeng.saas.checkin.tenant.repository.UserRepository;
 import com.paipeng.saas.checkin.util.CommonUtil;
 import io.jsonwebtoken.Claims;

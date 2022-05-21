@@ -1,7 +1,7 @@
 package com.paipeng.saas.checkin.security;
 
-import com.paipeng.saas.checkin.tenant.model.CustomUserDetails;
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.CustomUserDetails;
+import com.paipeng.saas.checkin.tenant.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.authentication.AbstractAuthenticationToken;

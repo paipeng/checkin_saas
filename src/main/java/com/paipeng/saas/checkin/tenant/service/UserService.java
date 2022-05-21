@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.paipeng.saas.checkin.tenant.model.User;
+import com.paipeng.saas.checkin.tenant.entity.User;
 
 
 public interface UserService {

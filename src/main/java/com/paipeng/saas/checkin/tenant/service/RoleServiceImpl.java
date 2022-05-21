@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.paipeng.saas.checkin.tenant.model.Role;
+import com.paipeng.saas.checkin.tenant.entity.Role;
 import com.paipeng.saas.checkin.tenant.repository.RoleRepository;
 
 @Service

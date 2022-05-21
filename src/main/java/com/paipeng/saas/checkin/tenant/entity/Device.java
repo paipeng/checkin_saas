@@ -1,4 +1,4 @@
-package com.paipeng.saas.checkin.tenant.model;
+package com.paipeng.saas.checkin.tenant.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.LazyCollection;

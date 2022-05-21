@@ -2,7 +2,7 @@ package com.paipeng.saas.checkin.tenant.config;
 
 import com.paipeng.saas.checkin.master.model.MasterTenant;
 import com.paipeng.saas.checkin.master.repository.MasterTenantRepository;
-import com.paipeng.saas.checkin.tenant.model.CustomUserDetails;
+import com.paipeng.saas.checkin.tenant.entity.CustomUserDetails;
 import com.paipeng.saas.checkin.util.AvailableTenantsInformationHolder;
 import com.paipeng.saas.checkin.util.DataSourceUtil;
 import com.paipeng.saas.checkin.util.TenantContextHolder;
@@ -18,8 +18,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 @Configuration
 public class DataSourceBasedMultiTenantConnectionProviderImpl

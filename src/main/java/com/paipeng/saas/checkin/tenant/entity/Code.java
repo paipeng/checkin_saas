@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -43,7 +44,7 @@ public class Code extends BaseEntity{
     @JsonBackReference("code-records")
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "code")
     @LazyCollection(value = LazyCollectionOption.EXTRA)
-    private Set<Record> records;
+    private List<Record> records;
 
     public String getName() {
         return name;
@@ -101,11 +102,11 @@ public class Code extends BaseEntity{
         this.latitude = latitude;
     }
 
-    public Set<Record> getRecords() {
+    public List<Record> getRecords() {
         return records;
     }
 
-    public void setRecords(Set<Record> records) {
+    public void setRecords(List<Record> records) {
         this.records = records;
     }
 }

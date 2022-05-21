@@ -1,7 +1,5 @@
 package com.paipeng.saas.checkin.tenant.entity;
 
-import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +11,8 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.LazyToOne;
 import org.hibernate.annotations.LazyToOneOption;
 import org.hibernate.validator.constraints.Length;
+
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -36,7 +36,7 @@ public class User extends BaseEntity {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private List<Role> roles;
 
     @Column(name = "token", length = 512)
     String token;
@@ -52,7 +52,7 @@ public class User extends BaseEntity {
     @JsonBackReference("user-records")
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "user")
     @LazyCollection(value = LazyCollectionOption.EXTRA)
-    private Set<Record> records;
+    private List<Record> records;
 
 
     // Getters and setters
@@ -88,11 +88,11 @@ public class User extends BaseEntity {
         this.tenant = tenant;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
@@ -112,11 +112,11 @@ public class User extends BaseEntity {
         this.company = company;
     }
 
-    public Set<Record> getRecords() {
+    public List<Record> getRecords() {
         return records;
     }
 
-    public void setRecords(Set<Record> records) {
+    public void setRecords(List<Record> records) {
         this.records = records;
     }
 

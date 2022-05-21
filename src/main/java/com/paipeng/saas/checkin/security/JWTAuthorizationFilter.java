@@ -112,7 +112,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             } else if (e.getMessage().endsWith("java.lang.Exception: 401")) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
-            } else if (e.getMessage().endsWith("java.lang.Exception: 404")) {
+            } else if (e.getMessage().endsWith("java.lang.Exception: 404") || e.getMessage().endsWith("404 not found")) {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
             } else if (e.getMessage().endsWith("java.lang.Exception: 409")) {
@@ -124,8 +124,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
             } else {
                 logger.error("exception not handle");
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                //response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                //response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
             }
         }
     }

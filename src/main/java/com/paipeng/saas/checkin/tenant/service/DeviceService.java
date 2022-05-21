@@ -7,16 +7,23 @@ import com.paipeng.saas.checkin.util.exception.SC_NOT_FOUND;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DeviceService extends BaseService{
     @Autowired
     private DeviceRepository deviceRepository;
 
-    public Device get(long deviceId) {
+    public Device query(long deviceId) {
         return deviceRepository.findById(deviceId).orElse(null);
     }
 
+    public List<Device> query() {
+        return deviceRepository.findAll();
+    }
+
     public Device save(Device device) {
+        logger.trace("save");
         if (device.getCompany() == null) {
             User user = getUserFromSecurity();
             device.setCompany(user.getCompany());
@@ -25,7 +32,7 @@ public class DeviceService extends BaseService{
     }
 
     public Device update(Device device) {
-        Device foundDevice = get(device.getId());
+        Device foundDevice = query(device.getId());
         if (foundDevice == null) {
             throw new SC_NOT_FOUND();
         }
@@ -33,7 +40,7 @@ public class DeviceService extends BaseService{
     }
 
     public void delete(long deviceId) {
-        Device foundDevice = get(deviceId);
+        Device foundDevice = query(deviceId);
         if (foundDevice == null) {
             throw new SC_NOT_FOUND();
         }

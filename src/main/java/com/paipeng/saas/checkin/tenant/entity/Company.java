@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -23,19 +24,19 @@ public class Company extends BaseEntity {
     @JsonBackReference("company-users")
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "company")
     @LazyCollection(value = LazyCollectionOption.EXTRA)
-    private Set<User> users;
+    private List<User> users;
 
 
     @JsonBackReference("company-tasks")
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "company")
     @LazyCollection(value = LazyCollectionOption.EXTRA)
-    private Set<Task> tasks;
+    private List<Task> tasks;
 
 
     @JsonBackReference("company-devices")
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "company")
     @LazyCollection(value = LazyCollectionOption.EXTRA)
-    private Set<Device> devices;
+    private List<Device> devices;
 
     @Column(name = "license_count", nullable = false)
     private int licenseCount;
@@ -48,27 +49,27 @@ public class Company extends BaseEntity {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
-    public Set<Task> getTasks() {
+    public List<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(Set<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 
-    public Set<Device> getDevices() {
+    public List<Device> getDevices() {
         return devices;
     }
 
-    public void setDevices(Set<Device> devices) {
+    public void setDevices(List<Device> devices) {
         this.devices = devices;
     }
 

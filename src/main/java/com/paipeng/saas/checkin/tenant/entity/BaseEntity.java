@@ -3,6 +3,7 @@ package com.paipeng.saas.checkin.tenant.entity;
 import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -11,7 +12,9 @@ import java.sql.Timestamp;
  * Modified by Pai Peng
  */
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     /**
      * 表格主键Id
      */

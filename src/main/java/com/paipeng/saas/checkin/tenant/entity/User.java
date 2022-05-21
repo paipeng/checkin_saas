@@ -16,8 +16,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class User extends BaseEntity {
 
     @Column(name = "username")
     @NotNull(message = "*Please provide your username")
@@ -103,6 +102,22 @@ public class User extends BaseEntity implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Set<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(Set<Record> records) {
+        this.records = records;
     }
 
     @Override

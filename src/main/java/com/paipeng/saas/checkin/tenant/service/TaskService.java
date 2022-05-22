@@ -1,6 +1,5 @@
 package com.paipeng.saas.checkin.tenant.service;
 
-import com.paipeng.saas.checkin.tenant.entity.Device;
 import com.paipeng.saas.checkin.tenant.entity.Task;
 import com.paipeng.saas.checkin.tenant.entity.User;
 import com.paipeng.saas.checkin.tenant.repository.TaskRepository;
@@ -8,13 +7,19 @@ import com.paipeng.saas.checkin.util.exception.SC_NOT_FOUND;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class TaskService extends BaseService{
+public class TaskService extends BaseService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public Task get(long taskId) {
+    public Task query(long taskId) {
         return taskRepository.findById(taskId).orElse(null);
+    }
+
+    public List<Task> query() {
+        return taskRepository.findAll();
     }
 
     public Task save(Task task) {
@@ -25,16 +30,22 @@ public class TaskService extends BaseService{
         return taskRepository.saveAndFlush(task);
     }
 
-    public Task update(Task task) {
-        Task foundTask = get(task.getId());
+    public Task update(long taskId, Task task) {
+        Task foundTask = query(taskId);
         if (foundTask == null) {
             throw new SC_NOT_FOUND();
         }
-        return taskRepository.saveAndFlush(task);
+        foundTask.setName(task.getName());
+        foundTask.setDescription(task.getDescription());
+        foundTask.setState(task.getState());
+        foundTask.setStartTime(task.getStartTime());
+        foundTask.setEndTime(task.getEndTime());
+        logger.trace("foundTask: " + foundTask.getCompany().getName());
+        return taskRepository.saveAndFlush(foundTask);
     }
 
     public void delete(long taskId) {
-        Task foundTask = get(taskId);
+        Task foundTask = query(taskId);
         if (foundTask == null) {
             throw new SC_NOT_FOUND();
         }

@@ -29,7 +29,7 @@ public class Record extends BaseEntity{
     private User user;
 
     @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "device_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "device_id", referencedColumnName = "id", nullable = true)
     @LazyToOne(value = LazyToOneOption.FALSE)
     private Device device;
 

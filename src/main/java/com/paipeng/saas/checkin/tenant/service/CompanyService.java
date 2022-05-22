@@ -16,7 +16,7 @@ public class CompanyService extends BaseService{
     @Autowired
     private CompanyRepository companyRepository;
 
-    public Company query(long companyId) {
+    public Company query(Long companyId) {
         return companyRepository.findById(companyId).orElse(null);
     }
 
@@ -29,7 +29,7 @@ public class CompanyService extends BaseService{
         return company;
     }
 
-    public Company update(long companyId, Company company) {
+    public Company update(Long companyId, Company company) {
         Company foundCompany = query(companyId);
         if (foundCompany == null) {
             throw new SC_NOT_FOUND();
@@ -41,7 +41,7 @@ public class CompanyService extends BaseService{
         return company;
     }
 
-    public void delete(long companyId) {
+    public void delete(Long companyId) {
         Company foundCompany = query(companyId);
         if (foundCompany == null) {
             throw new SC_NOT_FOUND();

@@ -1,10 +1,7 @@
 package com.paipeng.saas.checkin.tenant.service;
 
 import com.paipeng.saas.checkin.tenant.entity.Code;
-import com.paipeng.saas.checkin.tenant.entity.Task;
-import com.paipeng.saas.checkin.tenant.entity.User;
 import com.paipeng.saas.checkin.tenant.repository.CodeRepository;
-import com.paipeng.saas.checkin.tenant.repository.TaskRepository;
 import com.paipeng.saas.checkin.util.exception.SC_BAD_REQUEST;
 import com.paipeng.saas.checkin.util.exception.SC_NOT_FOUND;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +14,7 @@ public class CodeService extends BaseService {
     @Autowired
     private CodeRepository codeRepository;
 
-    public Code query(long taskId) {
+    public Code query(Long taskId) {
         return codeRepository.findById(taskId).orElse(null);
     }
 
@@ -32,7 +29,7 @@ public class CodeService extends BaseService {
         return codeRepository.saveAndFlush(code);
     }
 
-    public Code update(long taskId, Code code) {
+    public Code update(Long taskId, Code code) {
         Code foundCode = query(taskId);
         if (foundCode == null) {
             throw new SC_NOT_FOUND();
@@ -46,7 +43,7 @@ public class CodeService extends BaseService {
         return codeRepository.saveAndFlush(foundCode);
     }
 
-    public void delete(long taskId) {
+    public void delete(Long taskId) {
         Code foundCode = query(taskId);
         if (foundCode == null) {
             throw new SC_NOT_FOUND();

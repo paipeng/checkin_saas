@@ -14,7 +14,7 @@ public class TaskService extends BaseService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public Task query(long taskId) {
+    public Task query(Long taskId) {
         return taskRepository.findById(taskId).orElse(null);
     }
 
@@ -30,7 +30,7 @@ public class TaskService extends BaseService {
         return taskRepository.saveAndFlush(task);
     }
 
-    public Task update(long taskId, Task task) {
+    public Task update(Long taskId, Task task) {
         Task foundTask = query(taskId);
         if (foundTask == null) {
             throw new SC_NOT_FOUND();
@@ -44,7 +44,7 @@ public class TaskService extends BaseService {
         return taskRepository.saveAndFlush(foundTask);
     }
 
-    public void delete(long taskId) {
+    public void delete(Long taskId) {
         Task foundTask = query(taskId);
         if (foundTask == null) {
             throw new SC_NOT_FOUND();

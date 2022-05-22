@@ -14,7 +14,7 @@ public class DeviceService extends BaseService{
     @Autowired
     private DeviceRepository deviceRepository;
 
-    public Device query(long deviceId) {
+    public Device query(Long deviceId) {
         return deviceRepository.findById(deviceId).orElse(null);
     }
 
@@ -31,7 +31,7 @@ public class DeviceService extends BaseService{
         return deviceRepository.saveAndFlush(device);
     }
 
-    public Device update(long deviceId, Device device) {
+    public Device update(Long deviceId, Device device) {
         Device foundDevice = query(deviceId);
         if (foundDevice == null) {
             throw new SC_NOT_FOUND();
@@ -43,7 +43,7 @@ public class DeviceService extends BaseService{
         return deviceRepository.saveAndFlush(device);
     }
 
-    public void delete(long deviceId) {
+    public void delete(Long deviceId) {
         Device foundDevice = query(deviceId);
         if (foundDevice == null) {
             throw new SC_NOT_FOUND();

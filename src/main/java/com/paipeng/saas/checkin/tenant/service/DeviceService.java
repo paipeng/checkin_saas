@@ -31,11 +31,15 @@ public class DeviceService extends BaseService{
         return deviceRepository.saveAndFlush(device);
     }
 
-    public Device update(Device device) {
-        Device foundDevice = query(device.getId());
+    public Device update(long deviceId, Device device) {
+        Device foundDevice = query(deviceId);
         if (foundDevice == null) {
             throw new SC_NOT_FOUND();
         }
+        foundDevice.setName(device.getName());
+        foundDevice.setLatitude(device.getLatitude());
+        foundDevice.setLongitude(device.getLongitude());
+        foundDevice.setPlace(device.getPlace());
         return deviceRepository.saveAndFlush(device);
     }
 

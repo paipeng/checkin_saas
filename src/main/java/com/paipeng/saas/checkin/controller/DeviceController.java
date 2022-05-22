@@ -46,7 +46,7 @@ public class DeviceController extends BaseController {
     public Device update(@PathVariable("id") Long id, @NotNull @RequestBody Device device) throws Exception {
         logger.trace("update: " + device);
         response.setStatus(SC_OK);
-        return deviceService.save(device);
+        return deviceService.update(id, device);
     }
 
     @DeleteMapping(value = "/{id}", produces = {"application/json;charset=UTF-8"})

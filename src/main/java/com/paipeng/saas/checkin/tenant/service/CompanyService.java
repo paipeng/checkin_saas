@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompanyService extends BaseService{
 
@@ -17,17 +19,25 @@ public class CompanyService extends BaseService{
     public Company query(long companyId) {
         return companyRepository.findById(companyId).orElse(null);
     }
+
+    public List<Company> query() {
+        return companyRepository.findAll();
+    }
+
     public Company save(Company company) {
         company = companyRepository.saveAndFlush(company);
         return company;
     }
 
-    public Company update(Company company) {
-        Company foundCompany = query(company.getId());
+    public Company update(long companyId, Company company) {
+        Company foundCompany = query(companyId);
         if (foundCompany == null) {
             throw new SC_NOT_FOUND();
         }
-        company = companyRepository.saveAndFlush(company);
+        foundCompany.setName(company.getName());
+        foundCompany.setLicenseCount(company.getLicenseCount());
+        foundCompany.setExpire(company.getExpire());
+        company = companyRepository.saveAndFlush(foundCompany);
         return company;
     }
 

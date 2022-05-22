@@ -1,6 +1,7 @@
 package com.paipeng.saas.checkin.tenant.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,8 @@ public class Company extends BaseEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "E, dd MMM yyyy HH:mm:ss z", timezone = "GMT+2")
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     @Column(name = "expire", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
     private Timestamp expire;
 

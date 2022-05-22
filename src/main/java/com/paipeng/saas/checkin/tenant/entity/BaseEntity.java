@@ -1,5 +1,6 @@
 package com.paipeng.saas.checkin.tenant.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
@@ -25,12 +26,14 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 数据第一次创建时间，自动生成，无需传入
      */
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     @Generated(org.hibernate.annotations.GenerationTime.ALWAYS)
     @Column(name = "create_time", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Timestamp createTime;
     /**
      * 每次更新此条数据时的记录时间（上一次更新时间），无需传入
      */
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     @Generated(org.hibernate.annotations.GenerationTime.ALWAYS)
     @Column(name = "update_time", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Timestamp updateTime;

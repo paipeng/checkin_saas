@@ -67,9 +67,9 @@ public class TenantDatabaseConfig {
     }
 
     @Bean(name = "tenantEntityManagerFactory")
-    @ConditionalOnBean(name = "datasourceBasedMultitenantConnectionProvider")
+    //@ConditionalOnBean(name = "datasourceBasedMultitenantConnectionProvider")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            @Qualifier("datasourceBasedMultitenantConnectionProvider")
+            //@Qualifier("datasourceBasedMultitenantConnectionProvider")
                     MultiTenantConnectionProvider connectionProvider,
             @Qualifier("currentTenantIdentifierResolver")
                     CurrentTenantIdentifierResolver tenantResolver) {

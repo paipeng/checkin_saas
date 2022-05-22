@@ -1,12 +1,16 @@
 package com.paipeng.saas.checkin.tenant.service;
 
 import com.paipeng.saas.checkin.security.AppAuthenticationToken;
+import com.paipeng.saas.checkin.tenant.entity.Task;
 import com.paipeng.saas.checkin.tenant.entity.User;
+import liquibase.pro.packaged.T;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-public abstract class BaseService {
+import java.util.List;
+
+public abstract class BaseService implements BaseServiceInterface{
     protected static Logger logger;
 
     public BaseService() {
@@ -21,4 +25,6 @@ public abstract class BaseService {
             return null;
         }
     }
+
+
 }

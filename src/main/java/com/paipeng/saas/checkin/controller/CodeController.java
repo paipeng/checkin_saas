@@ -1,7 +1,7 @@
 package com.paipeng.saas.checkin.controller;
 
-import com.paipeng.saas.checkin.tenant.entity.Task;
-import com.paipeng.saas.checkin.tenant.service.TaskService;
+import com.paipeng.saas.checkin.tenant.entity.Code;
+import com.paipeng.saas.checkin.tenant.service.CodeService;
 import com.paipeng.saas.checkin.util.exception.SC_NOT_FOUND;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,45 +10,45 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/tasks")
-public class TaskController extends BaseController {
+@RequestMapping(value = "/codes")
+public class CodeController extends BaseController{
     @Autowired
-    private TaskService taskService;
+    private CodeService codeService;
 
     @GetMapping(value = "/{id}", produces = {"application/json;charset=UTF-8"})
-    public Task query(@NotNull @PathVariable("id") Long id) throws Exception {
+    public Code query(@NotNull @PathVariable("id") Long id) throws Exception {
         logger.trace("query: " + id);
-        Task Task = taskService.query(id);
-        if (Task == null) {
+        Code Code = codeService.query(id);
+        if (Code == null) {
             throw new SC_NOT_FOUND();
         }
-        return Task;
+        return Code;
     }
 
     @GetMapping(value = "", produces = {"application/json;charset=UTF-8"})
-    public List<Task> query() throws Exception {
+    public List<Code> query() throws Exception {
         logger.trace("query all");
-        return taskService.query();
+        return codeService.query();
     }
 
     @PostMapping(value = "", produces = {"application/json;charset=UTF-8"})
-    public Task save(@NotNull @RequestBody Task Task) throws Exception {
-        logger.trace("save: " + Task);
+    public Code save(@NotNull @RequestBody Code code) throws Exception {
+        logger.trace("save: " + code);
         //response.setStatus(SC_CREATED);
-        return taskService.save(Task);
+        return codeService.save(code);
     }
 
     @PutMapping(value = "/{id}", produces = {"application/json;charset=UTF-8"})
-    public Task update(@PathVariable("id") Long id, @NotNull @RequestBody Task task) throws Exception {
-        logger.trace("update: " + task);
+    public Code update(@PathVariable("id") Long id, @NotNull @RequestBody Code code) throws Exception {
+        logger.trace("update: " + code);
         //response.setStatus(SC_OK);
-        return taskService.update(id, task);
+        return codeService.update(id, code);
     }
 
     @DeleteMapping(value = "/{id}", produces = {"application/json;charset=UTF-8"})
     public void delete(@NotNull @PathVariable("id") Long id) throws Exception {
         logger.trace("delete" + id);
         //response.setStatus(SC_NO_CONTENT);
-        taskService.delete(id);
+        codeService.delete(id);
     }
 }

@@ -39,7 +39,7 @@ public class User extends BaseEntity {
     private List<Role> roles;
 
     @Column(name = "token", length = 512)
-    String token;
+    private String token;
 
     /**
      * 用户所在公司

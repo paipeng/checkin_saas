@@ -51,4 +51,11 @@ public class RecordController extends BaseController {
         //response.setStatus(SC_NO_CONTENT);
         recordService.delete(id);
     }
+
+
+    @GetMapping(value = "/tasks/{id}", produces = {"application/json;charset=UTF-8"})
+    public List<Record> queryByTaskId(@NotNull @PathVariable("id") Long taskId) throws Exception {
+        logger.trace("queryByTaskId: " + taskId);
+        return recordService.queryByTaskId(taskId);
+    }
 }

@@ -51,4 +51,15 @@ public class CodeController extends BaseController{
         //response.setStatus(SC_NO_CONTENT);
         codeService.delete(id);
     }
+
+
+    @GetMapping(value = "/serialnumber/{serialNumber}", produces = {"application/json;charset=UTF-8"})
+    public Code queryBySerialNumber(@NotNull @PathVariable("serialNumber") String serialNumber) throws Exception {
+        logger.trace("query: " + serialNumber);
+        Code Code = codeService.queryBySerialNumber(serialNumber);
+        if (Code == null) {
+            throw new SC_NOT_FOUND();
+        }
+        return Code;
+    }
 }

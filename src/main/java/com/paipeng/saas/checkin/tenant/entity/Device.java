@@ -16,7 +16,7 @@ import java.util.Set;
 @Entity
 @Table(name = "device")
 public class Device extends BaseEntity{
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
     @Column(name = "place", nullable = false)
     private String place;

@@ -50,4 +50,9 @@ public class CodeService extends BaseService {
         }
         codeRepository.delete(foundCode);
     }
+
+    public Code queryBySerialNumber(String serialNumber) {
+        Code code = codeRepository.findBySerialNumber(serialNumber);
+        return code;
+    }
 }

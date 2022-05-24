@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "user")
 public class User extends BaseEntity {
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, unique = true)
     @NotNull(message = "*Please provide your username")
     private String username;
 

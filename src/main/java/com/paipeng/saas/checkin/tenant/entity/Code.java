@@ -19,7 +19,7 @@ public class Code extends BaseEntity{
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "serial_number", nullable = false)
+    @Column(name = "serial_number", nullable = false, unique = true)
     private String serialNumber;
 
     @Column(name = "type", nullable = false, columnDefinition = "INT DEFAULT 0")

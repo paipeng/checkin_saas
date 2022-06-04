@@ -62,4 +62,10 @@ public class CodeController extends BaseController{
         }
         return Code;
     }
+
+    @GetMapping(value = "/tasks/{taskId}", produces = {"application/json;charset=UTF-8"})
+    public List<Code> queryCodesByTaskId(@NotNull @PathVariable("taskId") Long taskId) throws Exception {
+        logger.trace("queryCodesByTaskId: " + taskId);
+        return codeService.queryCodesByTaskId(taskId);
+    }
 }

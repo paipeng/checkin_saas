@@ -1,7 +1,9 @@
 package com.paipeng.saas.checkin.tenant.service;
 
 import com.paipeng.saas.checkin.tenant.entity.Code;
+import com.paipeng.saas.checkin.tenant.entity.Task;
 import com.paipeng.saas.checkin.tenant.repository.CodeRepository;
+import com.paipeng.saas.checkin.tenant.repository.TaskRepository;
 import com.paipeng.saas.checkin.util.exception.SC_BAD_REQUEST;
 import com.paipeng.saas.checkin.util.exception.SC_NOT_FOUND;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import java.util.List;
 public class CodeService extends BaseService {
     @Autowired
     private CodeRepository codeRepository;
+    @Autowired
+    private TaskRepository taskRepository;
 
     public Code query(Long taskId) {
         return codeRepository.findById(taskId).orElse(null);
@@ -39,6 +43,7 @@ public class CodeService extends BaseService {
         foundCode.setState(code.getState());
         foundCode.setLongitude(code.getLongitude());
         foundCode.setSerialNumber(code.getSerialNumber());
+        foundCode.setType(code.getType());
         logger.trace("foundCode: " + foundCode.getTask().getName());
         return codeRepository.saveAndFlush(foundCode);
     }
@@ -54,5 +59,14 @@ public class CodeService extends BaseService {
     public Code queryBySerialNumber(String serialNumber) {
         Code code = codeRepository.findBySerialNumber(serialNumber);
         return code;
+    }
+
+    public List<Code> queryCodesByTaskId(Long taskId) {
+        Task task = taskRepository.findById(taskId).orElse(null);
+        if (task != null) {
+return codeRepository.findAllByTaskId(taskId);
+        } else {
+            throw new SC_NOT_FOUND();
+        }
     }
 }

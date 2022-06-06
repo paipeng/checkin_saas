@@ -27,6 +27,9 @@ public class Device extends BaseEntity{
     @Column(name = "latitude", precision = 11, scale = 8)
     private BigDecimal latitude;
 
+    @Column(name = "distance", nullable = false, columnDefinition = "INT DEFAULT 0")
+    private int distance;
+
     @JsonBackReference("device-records")
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "device")
     @LazyCollection(value = LazyCollectionOption.EXTRA)
@@ -84,5 +87,13 @@ public class Device extends BaseEntity{
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 }

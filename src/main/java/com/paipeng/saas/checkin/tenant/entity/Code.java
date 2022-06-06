@@ -28,6 +28,8 @@ public class Code extends BaseEntity{
     @Column(name = "state", nullable = false, columnDefinition = "INT DEFAULT 0")
     private int state;
 
+    @Column(name = "distance", nullable = false, columnDefinition = "INT DEFAULT 0")
+    private int distance;
 
     @Column(name = "longitude", precision = 11, scale = 8)
     private BigDecimal longitude;
@@ -108,5 +110,13 @@ public class Code extends BaseEntity{
 
     public void setRecords(List<Record> records) {
         this.records = records;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 }

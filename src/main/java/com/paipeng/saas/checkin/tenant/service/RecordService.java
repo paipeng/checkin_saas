@@ -5,16 +5,20 @@ import com.paipeng.saas.checkin.tenant.entity.Record;
 import com.paipeng.saas.checkin.tenant.repository.CodeRepository;
 import com.paipeng.saas.checkin.tenant.repository.RecordRepository;
 import com.paipeng.saas.checkin.util.exception.SC_BAD_REQUEST;
+import com.paipeng.saas.checkin.util.exception.SC_CONFLICT;
 import com.paipeng.saas.checkin.util.exception.SC_NOT_FOUND;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
 public class RecordService extends BaseService{
     @Autowired
     private RecordRepository recordRepository;
+    @Autowired
+    private CodeRepository codeRepository;
 
     @Override
     public Record query(Long taskId) {
@@ -34,6 +38,31 @@ public class RecordService extends BaseService{
         if (record.getUser() == null) {
             throw new SC_BAD_REQUEST();
         }
+
+        Code code = codeRepository.findById(record.getCode().getId()).orElse(null);
+        if (code == null) {
+            throw new SC_BAD_REQUEST();
+        }
+        if (code.getState() == 0) {
+            logger.error("code state inactive");
+            throw new SC_CONFLICT();
+        }
+        if (code.getTask().getState() == 0) {
+            logger.error("task state inactive");
+            throw new SC_CONFLICT();
+        }
+
+        // check time validation
+        if (code.getTask().getStartTime() != null && code.getTask().getStartTime() != null) {
+            Instant instant = Instant.now();
+            long timeStampMillis = instant.toEpochMilli();
+            if (timeStampMillis < code.getTask().getStartTime().toInstant().toEpochMilli() ||
+                    timeStampMillis > code.getTask().getEndTime().toInstant().toEpochMilli()) {
+                logger.error("task start/end time invalid");
+                throw new SC_CONFLICT();
+            }
+        }
+
         return recordRepository.saveAndFlush(record);
     }
 

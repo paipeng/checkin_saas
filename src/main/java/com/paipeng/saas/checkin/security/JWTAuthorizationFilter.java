@@ -122,6 +122,10 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 logger.error("doFilterInternal JWT expired -> 401");
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
+            } else if (e.getMessage().endsWith("JWT validity cannot be asserted and should not be trusted.")) {
+                logger.error("doFilterInternal JWT expired -> 401");
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
             } else {
                 logger.error("exception not handle");
                 //response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

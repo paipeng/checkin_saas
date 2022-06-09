@@ -4,7 +4,9 @@ import com.paipeng.saas.checkin.tenant.entity.Role;
 import com.paipeng.saas.checkin.tenant.entity.User;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 class CommonUtilTest {
@@ -15,7 +17,7 @@ class CommonUtilTest {
         User user  = new User();
         user.setUsername("paipeng");
         user.setTenant("tenant_1");
-        Set<Role> roles = new HashSet<Role>();
+        List<Role> roles = new ArrayList<Role>();
         Role role = new Role();
         role.setRole("ADMIN");
         role.setId(1);
@@ -30,7 +32,7 @@ class CommonUtilTest {
         User user  = new User();
         user.setUsername("pai");
         user.setTenant("tenant_2");
-        Set<Role> roles = new HashSet<Role>();
+        List<Role> roles = new ArrayList<>();
         Role role = new Role();
         role.setRole("ADMIN");
         role.setId(1);

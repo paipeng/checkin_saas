@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -18,7 +19,7 @@ public class Code extends BaseEntity{
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "serial_number", nullable = false)
+    @Column(name = "serial_number", nullable = false, unique = true)
     private String serialNumber;
 
     @Column(name = "type", nullable = false, columnDefinition = "INT DEFAULT 0")
@@ -27,6 +28,8 @@ public class Code extends BaseEntity{
     @Column(name = "state", nullable = false, columnDefinition = "INT DEFAULT 0")
     private int state;
 
+    @Column(name = "distance", nullable = false, columnDefinition = "INT DEFAULT 0")
+    private int distance;
 
     @Column(name = "longitude", precision = 11, scale = 8)
     private BigDecimal longitude;
@@ -43,7 +46,7 @@ public class Code extends BaseEntity{
     @JsonBackReference("code-records")
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "code")
     @LazyCollection(value = LazyCollectionOption.EXTRA)
-    private Set<Record> records;
+    private List<Record> records;
 
     public String getName() {
         return name;
@@ -101,11 +104,19 @@ public class Code extends BaseEntity{
         this.latitude = latitude;
     }
 
-    public Set<Record> getRecords() {
+    public List<Record> getRecords() {
         return records;
     }
 
-    public void setRecords(Set<Record> records) {
+    public void setRecords(List<Record> records) {
         this.records = records;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 }

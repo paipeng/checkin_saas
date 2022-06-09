@@ -1,6 +1,7 @@
 package com.paipeng.saas.checkin.tenant.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.LazyToOne;
@@ -18,9 +19,11 @@ public class Task extends BaseEntity{
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     @Column(name = "start_time", columnDefinition = "TIMESTAMP")
     private Timestamp startTime;
 
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     @Column(name = "end_time", columnDefinition = "TIMESTAMP")
     private Timestamp endTime;
 
@@ -96,4 +99,5 @@ public class Task extends BaseEntity{
     public void setCodes(Set<Code> codes) {
         this.codes = codes;
     }
+
 }

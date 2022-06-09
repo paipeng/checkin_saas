@@ -1,7 +1,5 @@
 package com.paipeng.saas.checkin.tenant.entity;
 
-import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,18 +12,13 @@ import org.hibernate.annotations.LazyToOne;
 import org.hibernate.annotations.LazyToOneOption;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
-public class User implements Serializable {
+public class User extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
-
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, unique = true)
     @NotNull(message = "*Please provide your username")
     private String username;
 
@@ -43,11 +36,10 @@ public class User implements Serializable {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private List<Role> roles;
 
     @Column(name = "token", length = 512)
-    String token;
-
+    private String token;
 
     /**
      * 用户所在公司
@@ -60,19 +52,10 @@ public class User implements Serializable {
     @JsonBackReference("user-records")
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "user")
     @LazyCollection(value = LazyCollectionOption.EXTRA)
-    private Set<Record> records;
+    private List<Record> records;
 
 
     // Getters and setters
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -105,11 +88,11 @@ public class User implements Serializable {
         this.tenant = tenant;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
@@ -119,6 +102,22 @@ public class User implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public List<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<Record> records) {
+        this.records = records;
     }
 
     @Override
